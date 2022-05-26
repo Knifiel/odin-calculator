@@ -46,7 +46,7 @@ function input(button){
         break;
             
         case "back":
-            if(currentOperand.value.length == 1){
+            if(currentOperand.value.length == 0){
                 break;
             } else {
                 currentOperand.value = currentOperand.value.slice(0, -1);
@@ -160,15 +160,16 @@ function operate(button){
 }
 
 //prepare results for next calculation
-firstOperand.value = result;
-secondOperand.value = '';    
-currentOperand = firstOperand;
+firstOperand.value = result.toString();
+secondOperand.value = '';
 
 //check what operator was used. pass any operator besides "=" as operator for next calculation
 if((/[\+\-\*\/]/).test(button)){
-    operator.value = button;
+    operator.value = button.toString();
+    currentOperand = secondOperand;
 } else {
-    operator.value = '';        
+    operator.value = '';
+    currentOperand = firstOperand;        
 }
 updateDisplay();
 }
