@@ -3,14 +3,15 @@
     flex-direction: column;
 
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 
     border-radius: 8px;
     border: 2 px bold blue;
     
-    width: 500px;
-    height: 650px;
-    
+    width: min-content;
+    height: min-content;
+    padding: 20px;
+
     background-color: aqua;
 }
 
@@ -18,11 +19,11 @@
 .calculator{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: minmax(60px, min-content) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
     gap: 5px;
 
-    width: 450px;
-    height: 450px;
+    width: 400px;
+    height: min-content;
 
     background-color: aqua;
 
@@ -33,6 +34,8 @@
     display: flex;
     align-items: center;
     padding: 5px;
+    overflow-wrap: anywhere;
+    
 
     background-color: white;
     
@@ -48,7 +51,7 @@
 button{
     border-radius: 4px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-size:xx-large;
+        font-size: xx-large;
     }
     
 .one, .two, .three {
@@ -70,7 +73,12 @@ button{
 
 .clear{
     background-color: bisque;
-    grid-column: span 3;
+    grid-column: span 2;
+    grid-row: 6;
+}
+
+.back{
+    background-color: bisque;
     grid-row: 6;
 }
 
