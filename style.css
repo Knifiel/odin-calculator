@@ -1,4 +1,4 @@
-#container{
+.container{
     display: flex;
     flex-direction: column;
 
@@ -15,15 +15,10 @@
 }
 
 
-#calculator{
+.calculator{
     display: grid;
-    grid-template-areas:
-    'display display display display'
-    'number number number plus'
-    'number number number minus'
-    'number number number times'
-    'zero zero decimal divide'
-    'c c c equals';
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 5px;
 
     width: 450px;
@@ -33,14 +28,8 @@
 
     text-align: center;
 }
-button{
-border-radius: 4px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size:xx-large;
-}
 
-#display{
-    grid-area: display;
+.display{
     display: flex;
     align-items: center;
     padding: 5px;
@@ -53,40 +42,43 @@ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans
 
     border: 2px solid grey;
     border-radius: 6px;
+
+    grid-column: 1 / span 4;
 }
-#1, #2, #3, #4, #5, #6, #7, #8, #9{
-    grid-area: number;
+button{
+    border-radius: 4px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size:xx-large;
+    }
+    
+.one, .two, .three {
+    grid-row: 2;;
 }
 
-#zero{
-    grid-area: zero;
+.four, .five, .six{
+    grid-row: 3;
 }
 
-#c{
-    grid-area: c;
-    background-color: bisque;
+.seven, .eight, .nine{
+    grid-row: 4;
 }
 
-#\.{
-    grid-area: decimal;
+.zero{
+    grid-column: 1/ span 2;
+    grid-row: 5;
 }
-#\+{
-    grid-area: plus;
+
+.clear{
     background-color: bisque;
+    grid-column: span 3;
+    grid-row: 6;
 }
-#\-{
-    grid-area: minus;
-    background-color: bisque;
+
+.decimal{
+    grid-row: 5;
 }
-#\/{
-    grid-area: divide;
+
+.plus, .minus, .times, .divide, .equals{
     background-color: bisque;
-}
-#\={
-    grid-area: equals;
-    background-color: bisque;
-}
-#\*{
-    grid-area: times;
-    background-color: bisque;
+    grid-column: 4;
 }
