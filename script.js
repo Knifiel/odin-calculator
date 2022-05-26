@@ -46,7 +46,7 @@ function input(button){
         break;
             
         case "back":
-            if(currentOperand.value.length == 10){
+            if(currentOperand.value.length == 1){
                 break;
             } else {
                 currentOperand.value = currentOperand.value.slice(0, -1);
