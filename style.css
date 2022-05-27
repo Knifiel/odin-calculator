@@ -66,12 +66,20 @@ justify-content: center;
 
     grid-column: 1 / span 4;
 }
+
 button{
     border-radius: 4px;
     box-shadow: 2px 2px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         font-size: xx-large;
+
+    transition: all .1s ease;
     }
+.pushed{
+    transform: scale(0.9);
+    border-color: #fdfdfd;
+    box-shadow: 0 0 1rem #0400ff;
+      }
     
 .one, .two, .three {
     grid-row: 2;;

@@ -3,27 +3,38 @@ const display = document.querySelector(".display");
 const buttons = document.querySelectorAll('button');
 buttons.forEach(button => {
     button.addEventListener("click", event =>{
+        button.classList.add('pushed');
         input(button.dataset.but);
     });
 })
+function removePushed(e){
+    if(e.propertyName !== "transform") return; // skip it if it's not a transform
+    this.classList.remove('pushed'); 
+  }
+
+  buttons.forEach(button => button.addEventListener('transitionend', removePushed));
+
 
 //keyboard support
 window.addEventListener("keydown", key =>{
     switch(true){
     case ((/[0-9\.\-\+\*\/\=]/).test(key.key)):
         input(key.key);
+        document.querySelector(`[data-but="${key.key}"]`).classList.add('pushed');
         break;    
     case ((key.key === "Backspace")||(key.key === "Delete")):
         input("back");
+        document.querySelector(`[data-but="back"]`).classList.add('pushed');
         break;
     case (key.key === "Enter"):
         input('=');
+        document.querySelector(`[data-but="="]`).classList.add('pushed');
         break;
     case ((key.key === "c")||(key.key === "Escape")):
         input("clear");
+        document.querySelector(`[data-but="clear"]`).classList.add('pushed');
         break;}
 })
-    ;
 
 const firstOperand = {
     value: "0",
@@ -143,6 +154,7 @@ function input(button){
             operate(button);
             break;
         }
+        break;
     }
 }
 
