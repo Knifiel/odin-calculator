@@ -6,6 +6,8 @@ buttons.forEach(button => {
         input(button.dataset.but);
     });
 })
+
+//keyboard support
 window.addEventListener("keydown", key =>{
     switch(true){
     case ((/[0-9\.\-\+\*\/\=]/).test(key.key)):
@@ -36,10 +38,10 @@ let currentOperand = firstOperand;
 
 updateDisplay();
 
-
 //Main input logic
 function input(button){
     switch(button){
+        //Clear operator - set all variable names to starting ones 
         case "clear":
         firstOperand.value = "0";
         secondOperand.value = "";
@@ -48,6 +50,7 @@ function input(button){
         updateDisplay();
         break;
 
+        //decimal operator
         case ".":
         if((currentOperand.value == "0")||(currentOperand.value == '')){
             currentOperand.value = '0.';
@@ -61,6 +64,7 @@ function input(button){
         updateDisplay();
         break;
             
+        //backspace operator - do nothing if current operand is empty, otherwise remove last digit.
         case "back":
             if(currentOperand.value.length == 0){
                 break;
@@ -70,7 +74,9 @@ function input(button){
                 break;
             }
 
-        case '0':
+
+        //number inputs
+        case '0': 
         case '1':
         case '2': 
         case '3': 
@@ -80,7 +86,7 @@ function input(button){
         case '7':
         case '8':
         case '9':
-        if(currentOperand.value == "0"){
+        if(currentOperand.value == "0"){ //if first operand is still at zero, assign pressed button instead of concatenating to it
             currentOperand.value = button;
         } else if (firstOperand.value == "-"){
             currentOperand.value += button;
@@ -90,27 +96,29 @@ function input(button){
         updateDisplay();
         break;
         
+        //operators
+        //first case for any operator checks if second operand isn't empty string and calls operate function if true
         case "-":
-            if(secondOperand.value != ""){
+            if(secondOperand.value != ""){ 
                 operate(button);
                 break;
             }
-        if((firstOperand.value == "0") || (firstOperand.value == "-")){
+        if((firstOperand.value == "0") || (firstOperand.value == "-")){ // if first operand is 0 (or already negative). make it negative 
             currentOperand.value = "-";
-            
-            } else if (currentOperand.value != ""){
+            } else if (currentOperand.value != ""){  
             operator.value = button;
             currentOperand = secondOperand;
             }
             updateDisplay();
             break;
 
+        
         case "+":
         if(secondOperand.value != ""){
             operate(button);
             break;
         }
-        if(firstOperand.value == "-"){
+        if(firstOperand.value == "-"){ // if first operand is negative, make it positive
             currentOperand.value = "0";
         } else if ((currentOperand.value != "")||(currentOperand.value = "0")){
             operator.value = button;
@@ -133,8 +141,6 @@ function input(button){
         case '=':
         if(secondOperand.value != ""){
             operate(button);
-            break;
-        } else {
             break;
         }
     }
@@ -175,11 +181,11 @@ function operate(button){
     }
 }
 
-//prepare results for next calculation
+//prepare results for next calculation. Rounds floats to 4 decimals
 firstOperand.value = (+(Math.round(result + "e+4")  + "e-4")).toString();
 secondOperand.value = '';
 
-//check what operator was used. pass any operator besides "=" as operator for next calculation
+//check what operator was used. Pass any operator besides "=" as operator for next calculation
 if((/[\+\-\*\/]/).test(button)){
     operator.value = button.toString();
     currentOperand = secondOperand;
@@ -190,7 +196,6 @@ if((/[\+\-\*\/]/).test(button)){
 updateDisplay();
 }
 
-//update displayed values
 function updateDisplay(){
     display.textContent = firstOperand.value + operator.value + secondOperand.value;
 }
