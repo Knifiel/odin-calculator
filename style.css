@@ -1,5 +1,17 @@
+body, html{
+height: 100vh;
+padding: 0;
+margin: 0;
+}
+
+
 body{
 background-color: rgb(20, 32, 32);
+display: flex;
+
+align-items: center;
+justify-content: center;
+
 }
 
 .container{
@@ -10,15 +22,14 @@ background-color: rgb(20, 32, 32);
     justify-content: flex-end;
 
     border-radius: 8px;
-    border: 2 px bold blue;
     
     width: min-content;
     height: min-content;
     padding: 20px;
 
-    background-color: aqua;
+    background-color:darkolivegreen;
 
-    box-shadow: 5px 5px blue;
+    box-shadow: 5px 5px darkgoldenrod;
 }
 
 
@@ -31,7 +42,7 @@ background-color: rgb(20, 32, 32);
     width: 400px;
     height: min-content;
 
-    background-color: aqua;
+    background-color: darkolivegreen;
 
     text-align: center;
 }

@@ -6,6 +6,22 @@ buttons.forEach(button => {
         input(button.dataset.but);
     });
 })
+window.addEventListener("keydown", key =>{
+    switch(true){
+    case ((/[0-9\.\-\+\*\/\=]/).test(key.key)):
+        input(key.key);
+        break;    
+    case ((key.key === "Backspace")||(key.key === "Delete")):
+        input("back");
+        break;
+    case (key.key === "Enter"):
+        input('=');
+        break;
+    case ((key.key === "c")||(key.key === "Escape")):
+        input("clear");
+        break;}
+})
+    ;
 
 const firstOperand = {
     value: "0",
@@ -160,7 +176,7 @@ function operate(button){
 }
 
 //prepare results for next calculation
-firstOperand.value = result.toString();
+firstOperand.value = (+(Math.round(result + "e+4")  + "e-4")).toString();
 secondOperand.value = '';
 
 //check what operator was used. pass any operator besides "=" as operator for next calculation
