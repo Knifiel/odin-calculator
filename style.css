@@ -35,8 +35,8 @@ justify-content: center;
 
 .calculator{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: minmax(60px, min-content) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px) minmax(60px, 60px);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(60px, min-content) repeat(5, minmax(60px, 60px));
     gap: 5px;
 
     width: 400px;
@@ -82,7 +82,7 @@ button{
       }
     
 .one, .two, .three {
-    grid-row: 2;;
+    grid-row: 2;
 }
 
 .four, .five, .six{
